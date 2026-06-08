@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraceWalk | Premium Devotional & Prayer Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-cross"></i> <span>GraceWalk</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item active" data-target="dashboard-view">
+                    <i class="fa-solid fa-heart"></i> <span>Daily Walk</span>
+                </li>
+                <li class="nav-item" data-target="journal-view">
+                    <i class="fa-solid fa-book-bible"></i> <span>Journal & Requests</span>
+                </li>
+                <li class="nav-item" data-target="analytics-view">
+                    <i class="fa-solid fa-chart-line"></i> <span>Consistency Insights</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="streak-pill">
+                    <i class="fa-solid fa-fire"></i> <span id="streak-count">0</span> Day Streak
+                </div>
+            </div>
+        </nav>
+
+        <main class="content-viewport">
+            
+            <section id="dashboard-view" class="view-section active">
+                <div class="view-header">
+                    <h2>Your Daily Walk</h2>
+                    <p class="subtitle" id="bible-verse-header">"Thy word is a lamp unto my feet, and a light unto my path." — Psalm 119:105</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card main-progress-card">
+                        <h3>Today's Dedication</h3>
+                        <div class="progress-ring-container">
+                            <div class="progress-box">
+                                <span id="progress-text">0%</span>
+                            </div>
+                        </div>
+                        <p id="progress-summary">0 of 4 disciplines completed</p>
+                    </div>
+
+                    <div class="card checklist-card">
+                        <h3>Spiritual Disciplines</h3>
+                        <p class="section-desc">Complete your disciplines to sustain your daily streak.</p>
+                        <div class="prayer-checklist">
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="morning">
+                                <div class="custom-indicator"></div>
+                                <div class="prayer-info">
+                                    <span class="prayer-name">Morning Devotional & Scripture</span>
+                                    <span class="prayer-desc">Start the day grounded in the Word and quiet reflection.</span>
+                                </div>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="midday">
+                                <div class="custom-indicator"></div>
+                                <div class="prayer-info">
+                                    <span class="prayer-name">Midday Fellowship & Gratitude</span>
+                                    <span class="prayer-desc">Pause to give thanks and acknowledge His presence at noon.</span>
+                                </div>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="intercession">
+                                <div class="custom-indicator"></div>
+                                <div class="prayer-info">
+                                    <span class="prayer-name">Intercessory Prayer</span>
+                                    <span class="prayer-desc">Lift up requests for family, friends, and neighbors.</span>
+                                </div>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="night">
+                                <div class="custom-indicator"></div>
+                                <div class="prayer-info">
+                                    <span class="prayer-name">Night Reflection & Examination</span>
+                                    <span class="prayer-desc">Review your actions, practice repentance, and rest in grace.</span>
+                                </div>
+                            </label>
+                        </div>
+                        <button id="submit-day-btn" class="btn-primary" disabled>
+                            <i class="fa-solid fa-check-double"></i> Complete Day
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="journal-view" class="view-section">
+                <div class="view-header">
+                    <h2>Devotional Journal & Prayer List</h2>
+                    <p class="subtitle">Document scripture study reflections, active prayer needs, and praise reports.</p>
+                </div>
+
+                <div class="journal-grid">
+                    <div class="card journal-form-card">
+                        <h3>New Entry Log</h3>
+                        
+                        <div class="form-group">
+                            <label>Entry Focus Type</label>
+                            <div class="focus-selector">
+                                <button class="focus-btn selected" data-type="Reflection">📖 Scripture Study</button>
+                                <button class="focus-btn" data-type="Prayer Request">🙏 Prayer Request</button>
+                                <button class="focus-btn" data-type="Praise Report">✨ Praise Report</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="scripture-ref">Scripture Reference (Optional)</label>
+                            <input type="text" id="scripture-ref" placeholder="e.g., Philippians 4:6-7">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="journal-notes">Notes, Prayers, or Reflections</label>
+                            <textarea id="journal-notes" placeholder="Write down your conversations with God, what you learned today, or specific things you are asking for..."></textarea>
+                        </div>
+
+                        <button id="save-entry-btn" class="btn-secondary">
+                            <i class="fa-solid fa-bookmark"></i> Commit to Journal
+                        </button>
+                    </div>
+
+                    <div class="card logs-card">
+                        <h3>Your Spiritual Records</h3>
+                        <div id="journal-feed" class="feed-container">
+                            <p class="empty-state">No entries recorded yet. Begin your logging above!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="analytics-view" class="view-section">
+                <div class="view-header">
+                    <h2>Consistency Insights</h2>
+                    <p class="subtitle">A visual summary of your daily spiritual habits over time.</p>
+                </div>
+                
+                <div class="stats-overview-row">
+                    <div class="card stat-mini-card">
+                        <span class="stat-title">Longest Streak</span>
+                        <span class="stat-number" id="best-streak-num">0 days</span>
+                    </div>
+                    <div class="card stat-mini-card">
+                        <span class="stat-title">Total Logs Committed</span>
+                        <span class="stat-number" id="total-logs-num">0 entries</span>
+                    </div>
+                </div>
+
+                <div class="card analytics-card">
+                    <h3>Walk Grid History</h3>
+                    <p class="subtitle">Every illuminated grid block represents a day dedicated entirely to spiritual growth:</p>
+                    <div class="mock-grid" id="history-grid">
+                        </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
